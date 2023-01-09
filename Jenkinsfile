@@ -1,22 +1,27 @@
 pipeline {
-    agent {label 'slave1'} 
+    agent {label 'slave1'}
     stages {
-        stage('My Build') { 
+        stage('my Build') {
             steps {
-              sh 'mvn package'
-              sh 'pwd'
-              sh 'whoami'
-              sh 'scp -R /home/vineesh/workspace/declarative/target/hello-world-war-1.0.0.war ubuntu@172.31.7.201:/opt/apache-tomcat-10.0.27/webapps/'
+                sh "echo ${BUILD_VERSION}"
+                sh 'docker build -t tomcat_build:${BUILD_VERSION} .'
             }
-        }
-        stage('My deploy') { 
-        agent {label 'slave2'}
+        }  
+        stage('publish stage') {
             steps {
-              sh 'pwd'
-              sh 'sudo sh /opt/apache-tomcat-10.0.27/bin/shutdown.sh'
-              sh 'sleep 2'
-              sh 'sudo sh /opt/apache-tomcat-10.0.27/bin/startup.sh'
+                sh "echo ${BUILD_VERSION}"
+                sh 'docker login -u vineesh123 -p Vinusvini@2022'
+                sh 'docker tag tomcat_build:${BUILD_VERSION} vineesh123/mytomcat_new:${BUILD_VERSION}'
+                sh 'docker push vineesh123/mytomcat_new:${BUILD_VERSION}'
             }
-        }
-    }
+        } 
+        stage( 'my deploy' ) {
+        agent {label 'slave2'} 
+            steps {
+               sh 'docker pull vineesh123/mytomcat_new:${BUILD_VERSION}'
+               sh 'docker rm -f mytomcat_new'
+               sh 'docker run -d -p 8088:8080 --name mytomcat vineesh123/mytomcat_new:${BUILD_VERSION}'
+            }
+        }    
+    } 
 }
