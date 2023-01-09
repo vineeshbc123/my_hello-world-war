@@ -4,7 +4,7 @@
 </head>
 <body>
 	<h1>Below are the details abolut me</h1>
-	<h2>1.Vineesh B C</h2>
+	<h2>1.Name: Vineesh B C</h2>
 	<h2>2.Working in TCS from 3 years</h2>
 	<h2>3.Interests: Riding(biker)/Travelling, Photography, Photoshop and playing cricket</h2>
 	<h2>4.Hometown:Mandya Karnataka</h2>
