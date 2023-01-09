@@ -19,7 +19,7 @@ pipeline {
             steps {
                sh 'docker pull vineesh123/mytomcat_new:${BUILD_NUMBER}'
                sh 'docker rm -f mytomcat'
-               sh 'docker run -d -p 8080:8080 --name mytomcat vineesh123/mytomcat_new:${BUILD_NUMBER}'
+               sh 'docker run -d -p 8088:8080 --name mytomcat vineesh123/mytomcat_new:${BUILD_NUMBER}'
             }
         }    
     } 
