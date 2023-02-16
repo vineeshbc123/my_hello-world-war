@@ -9,7 +9,7 @@ pipeline {
         }  
         stage('publish stage') {
             steps {
-                sh 'curl -uvinivineesh06@gmail.com:Feb@2023 -T tomcat-${BUILD_NUMBER}.tgz\ "https://vineesh.jfrog.io/artifactory/helm/tomcat-${BUILD_NUMBER}.tgz\"'
+                sh 'curl -uvinivineesh06@gmail.com:Feb@2023 -T tomcat-${BUILD_NUMBER}.tgz\"https://vineesh.jfrog.io/artifactory/helm/tomcat-${BUILD_NUMBER}.tgz\"'
             }
         } 
         stage( 'my deploy' ) {
