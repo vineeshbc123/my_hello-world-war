@@ -1,0 +1,12 @@
+selector_label: mytomcat
+deployment_name: tomcat
+replicas: 4
+registry_name: vineesh123
+docker_repo_name: mytomcat_new
+image_tag: 12
+port_name: tomcat
+target_port: 8080
+port: 8080
+favorite:
+  drink: coffee
+  food: pizza
